@@ -10,6 +10,6 @@ public class AppTest {
 
         String result = myApp.getStatus();
 
-        assertEquals("ok", result)
+        assertEquals("ok", result);
     }
 }
