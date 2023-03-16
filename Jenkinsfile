@@ -12,7 +12,6 @@ pipeline {
                 }
             }
         }
-        stages {
         stage("build image") {
             steps {
                 script {
@@ -24,7 +23,6 @@ pipeline {
                     }
                 }
             }
-        }
         stage("deploy") {
             steps {
                 script {
