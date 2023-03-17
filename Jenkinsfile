@@ -1,3 +1,6 @@
+#!/usr/bin/env groovy
+@Library('jenkins-shared-library') _
+
 pipeline {
     agent any
     tools {
@@ -12,27 +15,17 @@ pipeline {
                 }
             }
         }
-        stage("build") {
-            when {
-                expression {
-                    BRANCH_NAME == 'main'
-                }
-            }
+        stage("build jar") {
             steps {
                 script {
-                    echo "Deplopying the application..."
+                    buildJar()
                     }
                 }
             }
-        stage("deploy") {
-               when {
-                expression {
-                    BRANCH_NAME == 'main'
-                }
-            }
+        stage("build image") {
             steps {
                 script {
-                    echo "Deplopying the application..."
+                    buildImage()
                 }
             }
         }
