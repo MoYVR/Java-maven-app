@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     echo "Deplopying the application..."
-                    echo "Executing pipeline for branch $BRANCH_NAME"
+                    echo "Executing pipeline for branch "
                 }
             }
         }
