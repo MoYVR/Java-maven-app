@@ -25,7 +25,7 @@ pipeline {
         stage("build image") {
             steps {
                 script {
-                    buildImage()
+                    buildImage 'moyvr/my-repo:jma-4.0'
                 }
             }
         }
