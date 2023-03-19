@@ -9,7 +9,7 @@ pipeline {
                 script {
                     echo "Deplopying the application..."
                     echo "Executing pipeline for branch $BRANCH_NAME"
-                    echo "testing the new feature"
+                    echo "testing the new feature.2"
                 }
             }
         }
