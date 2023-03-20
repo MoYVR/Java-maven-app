@@ -44,6 +44,24 @@ pipeline {
                 }
             }
         }
+    stage("commit version update") {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId:'a6f9c62c-b4b6-41fb-8aa8-dbd141e72a57', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                        sh 'git config --global user.email "jenkins@example.com"'
+                        sh 'git config --global user.name "jenkins"'
+
+                        sh 'git status'
+                        sh 'git branch'
+                        sh 'git config --list'
+
+                        sh "git remote set-url origin https://${USER}:${PASS}@https://github.com/MoYVR/Java-maven-app.git"
+                        sh 'git add .'
+                        sh 'git commit -m "ci: version bump"'
+                        sh 'git push origin HEAD:jenkins-jobs'
+                    }
+                }
+            }
+        }
     }
 }
-
