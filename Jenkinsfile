@@ -50,7 +50,6 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId:'a6f9c62c-b4b6-41fb-8aa8-dbd141e72a57', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
-                        sh 'git config --global --unset https.proxy'
                         
                         sh 'git status'
                         sh 'git branch'
