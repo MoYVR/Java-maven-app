@@ -60,7 +60,7 @@ pipeline {
                         sh 'git remote -v'
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
-                        sh 'git push origin HEAD:jenkins-jobs'
+                        sh 'git push origin jenkins-jobs'
                     }
                 }
             }
