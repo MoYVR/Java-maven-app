@@ -52,7 +52,7 @@ pipeline {
                         sh 'git config --global user.name "jenkins"'
                         
                         sh 'git status'
-                        sh 'git branch'
+                        sh 'git branch -b'
                         sh 'git config --list'
 
 
