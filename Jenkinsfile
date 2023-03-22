@@ -33,6 +33,7 @@ pipeline {
             steps {
                 script {
                     echo "Deplopying the application..."
+                       //dd
                 }
             }
         }
