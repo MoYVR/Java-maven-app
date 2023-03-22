@@ -1,41 +1,33 @@
+#!/usr/bin/env groovy
+
 pipeline {
     agent any
-    tools {
-        maven 'maven-3.9'
-    }
     stages {
         stage("test") {
             steps {
                 script {
-                    echo "Deplopying the application..."
-                    echo "Executing pipeline for branch $BRANCH_NAME"
-                    echo "testing the new feature.2"
+                   echo "testing the app..."
                 }
             }
         }
         stage("build") {
-            when {
-                expression {
-                    BRANCH_NAME == 'main'
-                }
-            }
             steps {
                 script {
-                    echo "Deplopying the application..."
+                    echo "building the app..."
                     }
                 }
             }
         stage("deploy") {
-               when {
-                expression {
-                    BRANCH_NAME == 'main'
-                }
-            }
             steps {
                 script {
-                    echo "Deplopying the application..."
+                     def dockerCmd = 'docker run -p 3080:3080 -d moyvr/my-repo:1.1.1-56'
+                    echo "deploying docker image to EC2..." 
+                    sshagent(['ec2-server-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.54.219 ${dockerCmd}"
+                    echo "Deplopying the app..."
                 }
             }
         }
     }
+}
 }
