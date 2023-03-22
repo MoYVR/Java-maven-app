@@ -88,7 +88,7 @@ library identifier: 'jenkins-shared-library@main', retriever: modernSCM(
 pipeline {
     agent any
     tools {
-        maven 'maven-3.9'
+        maven 'Maven'
     }
     environment {
         IMAGE_NAME = 'moyvr/my-repo:java-maven-1.0'
@@ -116,10 +116,10 @@ pipeline {
             steps {
                 script {
                     echo "Deplopying docker image to EC2..."
-                    def dockerCmd = "docker run -p 8080:8080 -d ${IMAGE_NAME}"
-                    echo "deploying docker image to EC2..." 
+                    def dockerComposeCmd = "docker-compuse -f docker-compuse.yaml up --detach"
                     sshagent(['ec2-server-key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.54.219 ${dockerCmd}"
+                    sh "scp docker-compuse.yaml ec2-user@54.234.54.219:/home/ec2-user"    
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.54.219 ${dockerComposeCmd}"
                     }
                 }
             }
