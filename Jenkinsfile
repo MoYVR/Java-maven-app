@@ -90,9 +90,6 @@ pipeline {
     tools {
         maven 'maven-3.9'
     }
-    environment {
-        IMAGE_NAME = 'moyvr/my-repo:java-maven-1.0'
-    }
     stages {
         stage("build app") {
             steps {
