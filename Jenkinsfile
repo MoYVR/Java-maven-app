@@ -3,31 +3,26 @@
 pipeline {
     agent any
     stages {
-        stage("test") {
+        stage('test') {
             steps {
                 script {
-                   echo "testing the app..."
+                    echo "Testing the application..."
                 }
             }
         }
-        stage("build") {
+        stage('build') {
             steps {
                 script {
-                    echo "building the app..."
-                    }
+                    echo "Building the application..."
                 }
             }
-        stage("deploy") {
+        }
+        stage('deploy') {
             steps {
                 script {
-                     def dockerCmd = 'docker run -p 3080:3080 -d moyvr/my-repo:1.1.1-56'
-                    echo "deploying docker image to EC2..." 
-                    sshagent(['ec2-server-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.54.219 ${dockerCmd}"
-                    echo "Deplopying the app..."
+                    echo "Deploying the application..."
                 }
             }
         }
     }
-}
 }
