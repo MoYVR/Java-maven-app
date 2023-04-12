@@ -20,7 +20,7 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                    def dockerCmd = 'docker run -p 3080:3080 -d moyvr/my-repo:jma-2.0'
+                    def dockerCmd = 'docker run -p 3080:3080 -d moyvr/my-repo:jma-3.0'
                     echo "Deploying the application..."
                     sshagent(['ec2-server-key']) {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@54.89.174.51 ${dockerCmd}"
