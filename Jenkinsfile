@@ -1,39 +1,31 @@
+#!/usr/bin/env groovy
+
 pipeline {
     agent any
-    tools {
-        maven 'maven-3.9'
-    }
     stages {
-        stage("test") {
+        stage('build app') {
+            steps {
+               script {
+                   echo "building the application..."
+               }
+            }
+        }
+        stage('build image') {
             steps {
                 script {
-                    echo "Deplopying the application..."
-                    echo "Executing pipeline for branch $BRANCH_NAME"
+                    echo "building the docker image..."
                 }
             }
         }
-        stage("build") {
-            when {
-                expression {
-                    BRANCH_NAME == 'main'
-                }
+        stage('deploy') {
+            environment {
+               AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
+               AWS_SECRET_ACCESS_KEY = credentials('jenkins_aws_secret_access_key')
             }
             steps {
                 script {
-                    echo "Deplopying the application..."
-                    }
-                }
-            }
-        stage("deploy") {
-               when {
-                expression {
-                    BRANCH_NAME == 'main'
-                }
-            }
-            steps {
-                script {
-                    echo "Deplopying the application..."
-                       //dd
+                   echo 'deploying docker image...'
+                   sh 'kubectl create deployment nginx-deployment --image=nginx'
                 }
             }
         }
