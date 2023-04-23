@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker-compuse -f docker-compuse.yaml up --detach
+docker-compose -f docker-compose.yaml up --detach
 echo "success"
