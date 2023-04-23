@@ -25,7 +25,7 @@ pipeline {
                     echo "building docker image..."
                     buildImage(env.IMAGE_NAME)
                     dockerLogin()
-                    dockerPush 'moyvr/my-repo:'(env.IMAGE_NAME)
+                    dockerPush moyvr/my-repo:(env.IMAGE_NAME)
                     }
                 }
             }
