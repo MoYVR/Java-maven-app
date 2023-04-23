@@ -101,7 +101,7 @@ resource "aws_instance" "myapp-server" {
   associate_public_ip_address = true
   key_name                    = "moz"
 
-  user_data = file("./user-data.sh")
+  user_data = file("user-data.sh")
 
 
   tags = {
