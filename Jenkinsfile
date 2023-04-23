@@ -16,25 +16,25 @@ pipeline {
         IMAGE_NAME = 'moyvr/my-repo:java-maven-2.0'
      }
 
-//     stages {
-//         stage("build app") {
-//             steps {
-//                 script {
-//                    echo "building app jar..."
-//                    buildJar()
-//                 }
-//             }
-//         }
-//         stage("build image") {
-//             steps {
-//                 script {
-//                     echo "building docker image..."
-//                     buildImage(env.IMAGE_NAME)
-//                     dockerLogin()
-//                     dockerPush(env.IMAGE_NAME)
-//                     }
-//                 }
-//             }
+    stages {
+        stage("build app") {
+            steps {
+                script {
+                   echo "building app jar..."
+                   buildJar()
+                }
+            }
+        }
+        stage("build image") {
+            steps {
+                script {
+                    echo "building docker image..."
+                    buildImage(env.IMAGE_NAME)
+                    dockerLogin()
+                    dockerPush(env.IMAGE_NAME)
+                    }
+                }
+            }
         stage("provision server") {
             environment {
                 AWS_ACCESS_KEY_ID = credentialsId('jenkins_aws_access_key_id')
