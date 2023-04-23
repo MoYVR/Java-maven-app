@@ -11,7 +11,7 @@ pipeline {
         maven 'maven-3.9'
     }
      environment {
-        IMAGE_NAME = 'moyvr/my-repo:jma-3.0'
+        IMAGE_NAME = 'moyvr/my-repo:java-maven-2.0'
      }
 
     stages {
