@@ -35,7 +35,7 @@ pipeline {
                     }
                 }
             }
-        stage('provision server') {
+        stage("provision server") {
             environment {
                 AWS_ACCESS_KEY_ID = credentialsId('jenkins_aws_access_key_id')
                 AWS_SECRET_ACCESS_KEY = credentialsId('jenkins_aws_secret_access_key')
