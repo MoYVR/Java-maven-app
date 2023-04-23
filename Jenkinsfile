@@ -66,7 +66,7 @@ pipeline {
                     def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
                     def ec2 = "ec2-user@${EC2_PUBLIC_IP}"
 
-                    sshagent(['ec2-server-key']) {
+                    sshagent(['mozw']) {
                         sh "scp -o StrictHostKeyChecking=no server-cmds.sh ${ec2}:/home/ec2-user"
                         sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ${ec2}:/home/ec2-user"    
                         sh "ssh -o StrictHostKeyChecking=no ${ec2} ${shellCmd}"
