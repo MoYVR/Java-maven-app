@@ -44,12 +44,12 @@ pipeline {
             steps {
                 script {
                     dir('terraform') {
-                        sh "terraform destroy --auto-approve"
-//                         sh "terraform apply --auto-approve"
-//                         EC2_PUBLIC_IP = sh (
-//                             script: "terraform output server-public-ip",
-//                             returnStdout: true
-//                         ).trim()
+                        sh "terraform init"
+                        sh "terraform apply --auto-approve"
+                        EC2_PUBLIC_IP = sh (
+                            script: "terraform output server-public-ip",
+                            returnStdout: true
+                        ).trim()
                      
                     }
                 }
@@ -62,19 +62,19 @@ pipeline {
             steps {
                 script {
                     echo "waiting for EC2 server to initialize"
-//                     sleep(time: 90, unit: "SECONDS")
+                    sleep(time: 90, unit: "SECONDS")
 
-//                     echo "Deplopying docker image to EC2..."
-//                     echo "${EC2_PUBLIC_IP}"
+                    echo "Deplopying docker image to EC2..."
+                    echo "${EC2_PUBLIC_IP}"
 
-//                     def shellCmd = "bash server-cmds.sh ${IMAGE_NAME} ${DOCKER_CREDS_USR} ${DOCKER_CREDS_PSW}"
-//                     def ec2 = "ec2-user@${EC2_PUBLIC_IP}"
+                    def shellCmd = "bash server-cmds.sh ${IMAGE_NAME} ${DOCKER_CREDS_USR} ${DOCKER_CREDS_PSW}"
+                    def ec2 = "ec2-user@${EC2_PUBLIC_IP}"
 
-//                     sshagent(['mozw']) {
-//                         sh "scp -o StrictHostKeyChecking=no server-cmds.sh ${ec2}:/home/ec2-user"
-//                         sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ${ec2}:/home/ec2-user"    
-//                         sh "ssh -o StrictHostKeyChecking=no ${ec2} ${shellCmd}"
-//                     }
+                    sshagent(['mozw']) {
+                        sh "scp -o StrictHostKeyChecking=no server-cmds.sh ${ec2}:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ${ec2}:/home/ec2-user"    
+                        sh "ssh -o StrictHostKeyChecking=no ${ec2} ${shellCmd}"
+                    }
                 }
             }
         }
