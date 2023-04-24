@@ -4,5 +4,12 @@ sudo systemctl start docker
 sudo usermod -aG docker ec2-user
 
 # install docker-compose 
-sudo curl -L "https://github.com/docker/compose/releases/download/2.17.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+apt update && apt install python3-venv python3-dev libffi-dev libssl-dev
+mkdir -p /opt/local/docker-compose
+python3 -m venv /opt/local/docker-compose/venv
+
+/opt/local/docker-compose/venv/bin/pip install --upgrade pip
+/opt/local/docker-compose/venv/bin/pip install docker-compose
+
+ln -s /opt/local/docker-compose/venv/bin/docker-compose /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
