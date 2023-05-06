@@ -27,7 +27,6 @@ pipeline {
                     remote.name = "ansible-server"
                     remote.host = "54.83.72.11"
                     remote.allowAnyHosts = true
-                    remote.logLevel = 'FINEST'
 
                     
 
