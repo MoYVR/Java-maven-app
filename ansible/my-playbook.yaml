@@ -5,12 +5,12 @@
   gather_facts: False
   tasks:
 
-    - name: Install docker & python
-      yum:
-        name:
-          - "*"
-        update_cache: yes
-        state: latest
+    # - name: Install docker & python
+    #   yum:
+    #     name:
+    #       - "*"
+    #     update_cache: yes
+    #     state: latest
 
     - name: Install Docker-compose
       get_url: 
@@ -21,16 +21,16 @@
     - name: Verify installation
       command: docker-compose --version
 
-    - name: Start docker daemon
-      systemd:
-        name: docker
-        state: started
+    # - name: Start docker daemon
+    #   systemd:
+    #     name: docker
+    #     state: started
 
-    - name: Add ec2-user to docker group
-      user:
-        name: ec2-user
-        groups: docker
-        append: yes
+    # - name: Add ec2-user to docker group
+    #   user:
+    #     name: ec2-user
+    #     groups: docker
+    #     append: yes
 
-    - name: Reconnect to server session
-      meta: reset_connection
+    # - name: Reconnect to server session
+    #   meta: reset_connection
