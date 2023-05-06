@@ -1,6 +1,6 @@
 ---
 - name: Install Docker, Docker-compose & Python3
-  hosts: tag_Name_dev_server
+  hosts: all
   become: yes
   gather_facts: False
   tasks:
@@ -27,7 +27,7 @@
       systemd:
         name: docker
         state: started
-        
+
     - name: Add ec2-user to docker group
       user:
         name: ec2-user
