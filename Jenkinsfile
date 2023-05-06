@@ -33,7 +33,7 @@ pipeline {
                     remote.password = GIT_PASSWORD
                         // sshScript remote: remote, script: "prepare-ansible-server.sh"
                         // sshCommand remote: remote, command: "ansible-playbook my-playbook.yaml"
-                        sshCommand remote: remote, command: "ls -la"
+                        sshCommand remote: remote, command: "ansible-playbook my-playbook.yaml"
                    
                     }
                 }
