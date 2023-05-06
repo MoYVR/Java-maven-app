@@ -8,9 +8,9 @@
     - name: Install docker & python
       yum:
         name:
-          - docker
+          - "*"
         update_cache: yes
-        state: present
+        state: latest
 
     - name: Install Docker-compose
       get_url: 
