@@ -1,0 +1,38 @@
+---
+- name: Install Docker, Docker-compose & Python3
+  hosts: tag_Name_dev_server
+  become: yes
+  gather_facts: False
+  tasks:
+
+    - name: Install docker & python
+      yum:
+        name:
+          - docker
+          - python3
+          - python3-pip
+        update_cache: yes
+        state: latest
+
+    - name: Install Docker-compose
+      get_url: 
+        url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: +x
+     
+    - name: Verify installation
+      command: docker-compose --version
+
+    - name: Start docker daemon
+      systemd:
+        name: docker
+        state: started
+        
+    - name: Add ec2-user to docker group
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
+    - name: Reconnect to server session
+      meta: reset_connection
