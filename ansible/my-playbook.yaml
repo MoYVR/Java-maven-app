@@ -6,6 +6,8 @@
   tasks:
 
     - name: Install docker & python
+      vars:
+        use_backend: dnf
       yum:
         name:
           - docker
