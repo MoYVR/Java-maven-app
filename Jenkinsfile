@@ -27,6 +27,8 @@ pipeline {
                     remote.name = "ansible-server"
                     remote.host = "54.83.72.11"
                     remote.allowAnyHosts = true
+                    remote.logLevel = 'FINEST'
+
                     
 
                     withCredentials([sshUserPrivateKey(credentialsId: 'ansible-server-key', keyFileVariable: 'keyfile', usernameVariable: 'user')]) {
