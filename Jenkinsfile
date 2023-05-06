@@ -23,10 +23,10 @@ pipeline {
             steps {
                 script {
                     echo "calling ansible playbook to configure ec2 instances"
-                    def remote = [:]
-                    remote.name = "ansible-server"
+                    // def remote = [:]
+                    // remote.name = "ansible-server"
                     // remote.host = "34.236.151.183"
-                    remote.allowAnyHosts = true
+                    // remote.allowAnyHosts = true
 
                     // remote.user = ubuntu
                         sshCommand remote: '34.236.151.183', credentialsId: 'ansible-server-key', command: "ls -la"
