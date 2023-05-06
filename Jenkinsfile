@@ -28,16 +28,16 @@ pipeline {
                     remote.host = '34.236.151.183'
                     remote.allowAnyHosts = true
  
-                    remote.user = 'ubuntu'
-                    remote.password = '128929'
+                    withCredentials([usernamePassword(credentialsId: 'ansible-userNpassword', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    remote.user = GIT_USERNAME
+                    remote.password = GIT_PASSWORD
                         // sshScript remote: remote, script: "prepare-ansible-server.sh"
                         // sshCommand remote: remote, command: "ansible-playbook my-playbook.yaml"
                         sshCommand remote: remote, command: "ls -la"
-
-                    
+                   
+                    }
                 }
             }
         }
     }
 }
-
