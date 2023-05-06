@@ -28,14 +28,13 @@ pipeline {
                     remote.host = '34.236.151.183'
                     remote.allowAnyHosts = true
  
-                    withCredentials([sshUserPrivateKey(credentialsId: 'ansible-server-key', keyFileVariable: 'keyfile', usernameVariable: 'user')]){
-                        remote.user = user
-                        remote.identityFile = keyfile
+                    remote.user = 'ubuntu'
+                    remote.password = '128929'
                         // sshScript remote: remote, script: "prepare-ansible-server.sh"
                         // sshCommand remote: remote, command: "ansible-playbook my-playbook.yaml"
                         sshCommand remote: remote, command: "ls -la"
 
-                    }
+                    
                 }
             }
         }
