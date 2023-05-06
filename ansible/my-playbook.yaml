@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   vars:
-    use_backend: dnf
+    ansible_pkg_mgr: yum
   gather_facts: False
   tasks:
 
