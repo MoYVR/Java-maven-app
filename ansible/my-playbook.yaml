@@ -2,6 +2,8 @@
 - name: Install Docker, Docker-compose & Python3
   hosts: all
   become: yes
+  vars:
+    use_backend: dnf
   gather_facts: False
   tasks:
 
