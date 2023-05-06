@@ -2,8 +2,6 @@
 - name: Install Docker, Docker-compose & Python3
   hosts: all
   become: yes
-  vars:
-    ansible_pkg_mgr: yum
   gather_facts: False
   tasks:
 
